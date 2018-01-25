@@ -1,0 +1,19 @@
+a:4:{s:4:"user";s:2:"rh";s:3:"sql";s:1024:"CREATE TABLE `admin_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) NOT NULL COMMENT '用户ID',
+  `realname` varchar(100) NOT NULL COMMENT '真实姓名',
+  `id_card` varchar(100) NOT NULL COMMENT '身份证号',
+  `bank_name` varchar(100) NOT NULL COMMENT '银行名称',
+  `bank_card` varchar(100) NOT NULL COMMENT '银行卡号',
+  `bank_user` varchar(100) NOT NULL COMMENT '持卡人姓名',
+  `bank_mobile` char(11) NOT NULL COMMENT '银行预留手机号',
+  `bank_type` varchar(100) NOT NULL COMMENT '联行号',
+  `bank_areacode` varchar(50) NOT NULL COMMENT '地区码',
+  `bank_address` varchar(100) DEFAULT '' COMMENT '开户行地址',
+  `province` varchar(100) NOT NULL COMMENT '省份',
+  `city` varchar(100) NOT NULL COMMENT '城市',
+  `address` varchar(150) DEFAULT '' COMMENT '地址',
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `admin_id` (`admin_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后台用户账户表';";s:4:"desc";s:15:"后台账户表";s:7:"warning";a:0:{}}

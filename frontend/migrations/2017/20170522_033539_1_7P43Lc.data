@@ -1,0 +1,12 @@
+a:4:{s:4:"user";s:2:"rh";s:3:"sql";s:577:"CREATE TABLE `bank_card` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `id_card` varchar(100) NOT NULL COMMENT '身份证号',
+  `bank_name` varchar(100) NOT NULL COMMENT '银行名称',
+  `bank_card` varchar(100) NOT NULL COMMENT '银行卡号',
+  `bank_user` varchar(100) NOT NULL COMMENT '持卡人姓名',
+  `bank_mobile` char(11) NOT NULL COMMENT '银行卡预留手机号',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='银行卡绑定信息表';";s:4:"desc";s:24:"银行卡绑定信息表";s:7:"warning";a:0:{}}

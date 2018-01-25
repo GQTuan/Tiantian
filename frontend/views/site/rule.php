@@ -1,0 +1,1 @@
+<img src="/images/rule.png" width="100%">

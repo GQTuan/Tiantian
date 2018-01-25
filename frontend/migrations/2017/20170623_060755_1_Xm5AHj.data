@@ -1,0 +1,2 @@
+a:4:{s:4:"user";s:2:"wq";s:3:"sql";s:115:"ALTER TABLE `user_withdraw`
+ADD COLUMN `isgive`  tinyint(2) NULL DEFAULT 1 COMMENT '是否返还' AFTER `op_state`;";s:4:"desc";s:13:"user_withdraw";s:7:"warning";a:0:{}}

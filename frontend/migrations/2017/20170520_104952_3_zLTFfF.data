@@ -1,0 +1,2 @@
+a:4:{s:4:"user";s:2:"rh";s:3:"sql";s:101:"ALTER TABLE `retail_withdraw`
+ADD COLUMN `out_sn`  varchar(25) NULL COMMENT '订单号' AFTER `type`;";s:4:"desc";s:12:"订单字段";s:7:"warning";a:0:{}}

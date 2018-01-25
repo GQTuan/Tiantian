@@ -1,0 +1,11 @@
+
+艺云购 
+{
+    "button": [
+        {
+            "type": "view",
+            "name": "立即体验",
+            "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9ce56b97b19b26ea&redirect_uri=http%3a%2f%2fwww.uu48.top&response_type=code&scope=snsapi_userinfo&state=index#wechat_redirect"
+        }
+    ]
+}

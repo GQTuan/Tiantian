@@ -1,0 +1,2 @@
+a:4:{s:4:"user";s:2:"rh";s:3:"sql";s:115:"ALTER TABLE `retail_withdraw`
+ADD COLUMN `isgive`  tinyint(2) NULL DEFAULT 1 COMMENT '是否返还' AFTER `out_sn`;";s:4:"desc";s:12:"关于代付";s:7:"warning";a:0:{}}

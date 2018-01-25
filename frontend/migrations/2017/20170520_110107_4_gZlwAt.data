@@ -1,0 +1,2 @@
+a:4:{s:4:"user";s:2:"rh";s:3:"sql";s:114:"ALTER TABLE `admin_account`
+ADD COLUMN `bank_code`  varchar(50) NULL COMMENT '银行编码' AFTER `bank_areacode`;";s:4:"desc";s:9:"家字段";s:7:"warning";a:0:{}}
