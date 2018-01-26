@@ -28,7 +28,7 @@ class SiteController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         } else {
-            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify', 'dianyun-notify', 'test-notify'];
+            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify', 'dianyun-notify', 'mingwei-notify'];
             if (user()->isGuest && !in_array($this->action->id, $actions)) {
                 $this->redirect(['site/login']);
                 return false;
@@ -1313,6 +1313,38 @@ l($data);
                     }
                     $userCharge->update();
                     exit("ok");
+                }
+            }
+        }
+    }
+
+    public function actionMingweiNotify()
+    {
+        $body = file_get_contents("php://input");
+        @file_put_contents("./pay.log", $body."\r\n", FILE_APPEND);
+        $request = json_decode($body, true);
+        $sign = isset($request['sign']) ? $request['sign'] : "";
+        unset($request['sign']);
+        require Yii::getAlias('@vendor/Mingwei/Mingfu.php');
+        $mingfuPay = new \Mingfu();
+        $check = $mingfuPay->validate_sign($sign, $request);
+        if($check){
+            if($request['respCode'] == 0){
+                $trade_no = $request['tranNo'];
+                // 支付成功
+                $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
+                if (!empty($userCharge)) {
+                    if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
+                        $user = User::findOne($userCharge->user_id);
+                        $amount = $userCharge->actual;
+                        $user->account += $amount;
+                        if ($user->save()) {
+                            $userCharge->charge_state = 2;
+                        }
+                    }
+                    $userCharge->update();
+                    @file_put_contents("./pay.log", "success\r\n", FILE_APPEND);
+                    exit("000000");
                 }
             }
         }

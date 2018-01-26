@@ -312,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
   CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- 正在导出表  tiantian.auth_item_child 的数据：~183 rows (大约)
+-- 正在导出表  tiantian.auth_item_child 的数据：~197 rows (大约)
 /*!40000 ALTER TABLE `auth_item_child` DISABLE KEYS */;
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 	('系统管理员', 'frontendAdminAjaxRoleInfo'),
@@ -6745,7 +6745,7 @@ CREATE TABLE IF NOT EXISTS `ring_wechat` (
 -- 正在导出表  tiantian.ring_wechat 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `ring_wechat` DISABLE KEYS */;
 INSERT INTO `ring_wechat` (`admin_id`, `ring_name`, `url`, `appid`, `appsecret`, `mchid`, `mchkey`, `token`, `sign_name`, `media_id`, `username`, `password`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-	(5, '夕秀软件', 'ylife.lc', 'wx00cf37004337e239', 'e5c16e8041244fa9d48e66da3687eedd', '*', '*', 'jgZBoGWXMKzwixhJ', '云生活', 'aFcDHd9AxkmgPZtsgfE8Jd64MDBp8Y4yd-2qd7ssxM4UbcxVgPLynrWfYjN6mAvg', 'N6989547', 'wcVTnOIiRK634a', '2017-03-20 16:12:48', 2, '2017-03-20 16:12:48', 2);
+	(5, '天天乐', 'ylife.lc', '*', '*', 'w0JFHt96', 'eqyJW1wp', '*', '天天乐', 'aFcDHd9AxkmgPZtsgfE8Jd64MDBp8Y4yd-2qd7ssxM4UbcxVgPLynrWfYjN6mAvg', 'N6989547', 'wcVTnOIiRK634a', '2017-03-20 16:12:48', 2, '2017-03-20 16:12:48', 2);
 /*!40000 ALTER TABLE `ring_wechat` ENABLE KEYS */;
 
 -- 导出  表 tiantian.temp 结构
