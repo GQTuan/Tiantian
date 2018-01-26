@@ -371,8 +371,8 @@ class SiteController extends \frontend\components\Controller
 
         if ($model->load(post())) {
             if ($model->login()) {
-                //return success(url('site/index'));
-                return success(url('site/shop'));
+                return success(url('site/index'));
+                //return success(url('site/shop'));
                 // return $this->goBack();
             } else {
                 return error($model);

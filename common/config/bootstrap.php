@@ -42,7 +42,7 @@ const ZF_KEY = 'hMogUMIuLfXV0EQKJCPkj6bVmSHXJezI';
 const ZF_BACK_URL = 'http://sc.zhbpay.com/bhwlpay/node?';
 
 // EasyPay
-const EASYPAY_MERCHANT_NO = "BTPF51002NAOS";
+const EASYPAY_MERCHANT_NO = "";
 const EASYPAY_CURRENCY = "CNY";
 const EASYPAY_API_NAME = "com.opentech.cloud.easypay.trade.create";
 const EASYPAY_API_VERSION = "0.0.1";
@@ -50,8 +50,8 @@ const EASYPAY_PAY_API_NAME = "com.opentech.cloud.easypay.balance.pay";
 const EASYPAY_PAY_PASSWORD = "456789";
 
 // DianYunPay
-const DIANYUN_MEMBER_ID = "10313";
-const DIANYUN_MD5_KEY = "dSrOAui4hiHG6bZEw4LezSY6CKGCWL";
+const DIANYUN_MEMBER_ID = "10383";
+const DIANYUN_MD5_KEY = "ktern9aUSidDfEq9MRd8Fh1RVzwlZX";
 const DIANYUN_POST_URL = "http://www.919km.cn/Pay_Index.html"; //http://www.adsstore.cn/Pay_Index.html
 
 /**
