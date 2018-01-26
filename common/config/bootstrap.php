@@ -54,6 +54,12 @@ const DIANYUN_MEMBER_ID = "10383";
 const DIANYUN_MD5_KEY = "ktern9aUSidDfEq9MRd8Fh1RVzwlZX";
 const DIANYUN_POST_URL = "http://www.919km.cn/Pay_Index.html"; //http://www.adsstore.cn/Pay_Index.html
 
+//MingweiPay
+const MINGWEI_MERCHANT_NO = "8660592201800090";
+const MINGWEI_MERCHANT_KEY = "QDKHJ924TFLVF3G9";
+const MINGWEI_QQQR_URL = "http://39.108.235.176/trans/gateway/tran/genQrCode";
+const MINGWEI_QQH5_URL = "http://39.108.235.176/trans/gateway/tran/h5Pay";
+
 /**
  * 路径别名定义
  */

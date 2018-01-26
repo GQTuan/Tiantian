@@ -1,6 +1,6 @@
 <?php foreach ($data as $userCharge) :?>
 <div class="container">
-    <div class="list fl">[充值]微信充值</div>
+    <div class="list fl">[充值]</div>
     <div class="list fl" style="color:#000;text-align: center;">订单号：<?= $userCharge->trade_no ?></div>
     <div class="lisch fl"><span class="cz">充</span><b> <?= $userCharge->amount ?></b></div>
     <div class="lisch fl"><!-- <span class="fy">费</span>  <?= floatval($userCharge->amount * config('charge_rate', '0.06')) ?> --></div>

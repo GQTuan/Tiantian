@@ -455,7 +455,27 @@ class UserController extends \frontend\components\Controller
             $html = UserCharge::payDianyunPay($amount, $type);
             return $this->render('gzh', compact('html'));
         }else{
-            // SCEN支付
+            // 明薇支付
+            $src = UserCharge::payMingweiPay($amount, $type);
+            if(in_array($type, [3])){
+                // 扫码支付
+                if($src){
+                    if($type == 3) {
+                        return $this->render('qqpay', compact('src', 'amount'));
+                    }
+                }else{
+                    return $this->redirect(['site/wrong']);
+                }
+            }else{
+                // 跳转链接
+                if($src){
+                    header("Location:$src");
+                    exit();
+                }else{
+                    return $this->redirect(['site/wrong']);
+                }
+            }
+            /*// SCEN支付
             $src = UserCharge::payEasyPay($amount, $type);
             if(in_array($type, [3, 4, 5])){
                 // 扫码支付
@@ -474,7 +494,7 @@ class UserController extends \frontend\components\Controller
                 // 跳转链接
                 header("Location:$src");
                 exit();
-            }
+            }*/
         }
         /*switch ($type) {
             case '1':

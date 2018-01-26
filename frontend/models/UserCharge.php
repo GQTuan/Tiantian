@@ -1068,4 +1068,85 @@ class UserCharge extends \common\models\UserCharge
         $html = $dianPay->getHtml($parameters);
         return $html;
     }
+
+    public static function payMingweiPay($amount, $type)
+    {
+        $_settings = Setting::getConfig();
+        $fee = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : self::CHARGE_FEE;
+        $poundage = ceil($amount * $fee);
+        $actual = $amount - $poundage;
+        $userCharge = new UserCharge();
+        $userCharge->user_id = u()->id;
+        $userCharge->trade_no = u()->id . date("YmdHis") . rand(1000, 9999);
+        $userCharge->amount = $amount;
+        $userCharge->actual = $actual;
+        $userCharge->poundage = $poundage;
+        $userCharge->charge_state = self::CHARGE_STATE_WAIT;
+        if($type == 3){
+            // QQ扫码
+            $userCharge->charge_type = self::CHARGE_TYPE_QQ;
+            $collectWay = "QQZF";
+            $typeText = "qq";
+            $requestUrl = MINGWEI_QQQR_URL;
+        }elseif ($type == 9){
+            // QQ H5支付
+            $userCharge->charge_type = self::CHARGE_TYPE_QQ;
+            $collectWay = "QQZF5";
+            $typeText = "qq";
+            $requestUrl = MINGWEI_QQH5_URL;
+        }else{
+            return false;
+        }
+        if (!$userCharge->save()) {
+            return false;
+        }
+        $parameters = [];
+        $money = $amount * 100;
+        $parameters['agentNo'] = MINGWEI_MERCHANT_NO;
+        $parameters['merCode'] = MINGWEI_MERCHANT_NO;
+        $parameters['tranNo'] = $userCharge->trade_no;
+        $parameters['tranAmt'] = "$money";
+        $parameters['settleType'] = '0';
+        $parameters['collectWay'] = $collectWay;
+        $parameters['expireTime'] = '5';
+        $parameters['tranTime'] = date("YmdHis");
+        $parameters['noticeUrl'] = url(['site/mingwei-notify'], true);
+        $parameters['subject'] = '用户余额充值';
+        $parameters['orderDesc'] = '用户余额充值';
+        require Yii::getAlias('@vendor/Mingwei/Mingfu.php');
+        $mingfuPay = new \Mingfu();
+        if(in_array($type, [9])){
+            $parameters['frontUrl'] = url(['site/index'], true);
+        }
+        $parameters['sign'] = $mingfuPay->sign($parameters);
+        $response = $mingfuPay->request($requestUrl, json_encode($parameters));
+        $response = json_decode($response, true);
+        if($type == 3){
+            // QQ扫码
+            if($response['respCode'] == 2){
+                //生成二维码
+                require Yii::getAlias('@vendor/phpqrcode/phpqrcode.php');
+                $value = $response['codeUrl']; //二维码内容
+                $errorCorrectionLevel = 'L';//容错级别
+                $matrixPointSize = 6;//生成图片大小
+                $filePath = Yii::getAlias('@webroot/' . config('uploadPath') . '/images/');
+                FileHelper::mkdir($filePath);
+                $src = $filePath . $typeText . u()->id . '.png';
+                //生成二维码图片
+                \QRcode::png($value, $src, $errorCorrectionLevel, $matrixPointSize, 2);
+                return config('uploadPath') . '/images/' . $typeText . u()->id . '.png';
+            }else{
+                return false;
+            }
+        }elseif ($type == 9){
+            // QQ H5支付
+            if($response['respCode'] == 0){
+                return $response['H5_URL'];
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }
