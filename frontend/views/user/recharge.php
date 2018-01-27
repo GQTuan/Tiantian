@@ -289,7 +289,8 @@ $(function() {
         $("#chargeAmount").val( $(this).html() );
 
         var val = $(this).html();
-        if( parseFloat(val) > 1000 ){
+        var type = $('#type').val();
+        if( parseFloat(val) > 1000 && ( type == 10 || type == 11 ) ){
             $(".qqsaoma").trigger("click");
         }
         var rate = <?= $rate ?>;    //后台给定
@@ -323,8 +324,8 @@ $(function() {
         }
 
         $('#amount').val(amount);
-
-        if( parseFloat(amount) > 1000 ){
+        var type = $('#type').val();
+        if( parseFloat(amount) > 1000 && ( type == 10 || type == 11 ) ){
             $(".qqsaoma").trigger("click");
         }
 
