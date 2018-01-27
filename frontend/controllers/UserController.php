@@ -457,11 +457,15 @@ class UserController extends \frontend\components\Controller
         }else{
             // 明薇支付
             $src = UserCharge::payMingweiPay($amount, $type);
-            if(in_array($type, [3])){
+            if(in_array($type, [3, 10, 11])){
                 // 扫码支付
                 if($src){
                     if($type == 3) {
                         return $this->render('qqpay', compact('src', 'amount'));
+                    }else if ($type == 10) {
+                        return $this->render('jdpay', compact('src', 'amount'));
+                    }else{
+                        return $this->render('unionpay', compact('src', 'amount'));
                     }
                 }else{
                     return $this->redirect(['site/wrong']);

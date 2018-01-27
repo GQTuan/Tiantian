@@ -221,8 +221,8 @@ class SiteController extends \admin\components\Controller
             session('verifyCode', 1234, 1800);
             return success('发送成功');
         }
-        session('verifyCode', 2356, 1800);
-        return success('发送成功');
+        //session('verifyCode', 2356, 1800);
+        //return success('发送成功');
         $mobile = $adminUser->mobile;
         // 生成随机数，非正式环境一直是1234
         $randomNum = YII_ENV_PROD ? rand(1024, 9951) : 1234;

@@ -1094,6 +1094,18 @@ class UserCharge extends \common\models\UserCharge
             $collectWay = "QQZF5";
             $typeText = "qq";
             $requestUrl = MINGWEI_QQH5_URL;
+        }elseif ($type == 10){
+            // 京东扫码
+            $userCharge->charge_type = self::CHARGE_TYPE_JD;
+            $collectWay = "JDZF";
+            $typeText = "jd";
+            $requestUrl = MINGWEI_QQQR_URL;
+        }elseif ($type == 11){
+            // 银联扫码
+            $userCharge->charge_type = self::CHARGE_TYPE_UNION;
+            $collectWay = "UPZF";
+            $typeText = "union";
+            $requestUrl = MINGWEI_QQQR_URL;
         }else{
             return false;
         }
@@ -1121,7 +1133,7 @@ class UserCharge extends \common\models\UserCharge
         $parameters['sign'] = $mingfuPay->sign($parameters);
         $response = $mingfuPay->request($requestUrl, json_encode($parameters));
         $response = json_decode($response, true);
-        if($type == 3){
+        if(in_array($type, [3,10,11])){
             // QQ扫码
             if($response['respCode'] == 2){
                 //生成二维码
