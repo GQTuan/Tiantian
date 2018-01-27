@@ -207,7 +207,7 @@
             <span>支付宝扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <div class="boxflex1 paystyle checkImg1"  data-type="3">
+       <div class="boxflex1 paystyle checkImg1 qqsaoma"  data-type="3">
             <img src="/images/qqpay.png" style="width: 20px;">
             <span>QQ扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
@@ -289,6 +289,9 @@ $(function() {
         $("#chargeAmount").val( $(this).html() );
 
         var val = $(this).html();
+        if( parseFloat(val) > 1000 ){
+            $(".qqsaoma").trigger("click");
+        }
         var rate = <?= $rate ?>;    //后台给定
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
@@ -320,6 +323,11 @@ $(function() {
         }
 
         $('#amount').val(amount);
+
+        if( parseFloat(amount) > 1000 ){
+            $(".qqsaoma").trigger("click");
+        }
+
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
@@ -334,6 +342,12 @@ $(function() {
 
     $('.payType .paystyle').on('click', function(){
         var type = $(this).data('type');
+        var amount =  $('#amount').val();
+        if( parseFloat(amount) > 1000 && ( type == 10 || type == 11 )){
+            $.alert("京东扫码和银联扫码单笔数额不得大于1000元" , function(){
+                $(".qqsaoma").trigger("click");
+            });
+        }
         $('.payType .paystyle').each(function(){
             if (type == $(this).data('type')) {
                 $(this).find('.checkPay').attr({"src":"/images/seleted.png"});
