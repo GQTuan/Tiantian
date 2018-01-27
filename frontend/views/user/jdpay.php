@@ -6,7 +6,7 @@
     }
     .top-tip{
         font-size:36px;
-        color:#faad0e;
+        color:#f10215;
         height:100px;
         line-height: 100px;
         text-align: center;
@@ -20,18 +20,18 @@
         line-height: 33px;
         text-align: center;
         font-size:20px;
-        color:#faad0e;
+        color:#f10215;
         background: #fff;
         margin-top:-24px;
         border-radius:18px;
-        border:1px solid #F8BF47;
+        border:1px solid #f10215;
     }
     .img-content{
         width:225px;
         margin:0 auto;
         height:225px;
         margin-top:25px;
-        border:1px solid #F8BF47;
+        border:1px solid #201e23;
     }
     .img-content img{
         width:100%;
@@ -41,7 +41,7 @@
         margin-top:50px;
     }
     .notice>span{
-        border-bottom:1px dashed #FAAE14;
+        border-bottom:1px dashed #f10215;
         color:#201e23;
         font-size:24px;
         padding-bottom:10px;
@@ -52,7 +52,7 @@
         height: 40px;
         border-radius:20px;
         margin:0 auto;
-        background: #FAAD0E;
+        background: #f10215;
         text-align: center;
         line-height: 40px;
         font-size:22px;
@@ -62,7 +62,7 @@
 </style>
  <div class="main">
      <div class="top-tip">
-        <img style="width:40px;" src="/images/QQ.png">
+        <img style="width:40px;" src="/images/jd.png">
          JD扫码支付
      </div>
     <div class="main-content">

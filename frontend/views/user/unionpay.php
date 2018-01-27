@@ -31,7 +31,7 @@
         margin:0 auto;
         height:225px;
         margin-top:25px;
-        border:1px solid #4FA9EE;
+        border:1px solid #201e23;
     }
     .img-content img{
         width:100%;

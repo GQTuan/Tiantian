@@ -1071,6 +1071,7 @@ class UserCharge extends \common\models\UserCharge
 
     public static function payMingweiPay($amount, $type)
     {
+        header("Content-type:text/html;charset=utf-8");
         $_settings = Setting::getConfig();
         $fee = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : self::CHARGE_FEE;
         $poundage = ceil($amount * $fee);
