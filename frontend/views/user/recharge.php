@@ -243,6 +243,16 @@
             <span>QQ WAP</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
+        <div class="boxflex1 paystyle checkImg1" data-type="10">
+            <img src="/images/jd.png" style="width: 20px;">
+            <span>京东扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
+        </div>
+        <div class="boxflex1 paystyle checkImg1"  data-type="11">
+            <img src="/images/pay.png" style="width: 20px;">
+            <span>银联扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
     </div>
     <div class="recharge-btn" id="payBtn">立即充值</div>
 
