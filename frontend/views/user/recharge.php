@@ -189,7 +189,7 @@
             </div>
         </div>
         <input type="hidden" id="amount" name="amount" value="68">
-        <input type="hidden" id="type" name="type" value="3">
+        <input type="hidden" id="type" name="type" value="10">
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
     <div class="boxflex1">
@@ -209,11 +209,13 @@
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
 		-->
+		<!--
        <div class="boxflex1 paystyle checkImg1 qqsaoma"  data-type="3">
             <img src="/images/qqpay.png" style="width: 20px;">
             <span>QQ扫码</span>
             <img src="/images/seleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
+		-->
        <!--<div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="4">
             <img src="/images/jd.png" style="width: 20px;">
             <span>京东扫码</span>
@@ -239,16 +241,17 @@
             <span>支付宝WAP</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>-->
-
+		<!--
         <div class="boxflex1 paystyle checkImg1"  data-type="9">
             <img src="/images/qqpay.png" style="width: 20px;">
             <span>QQ WAP</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
+		-->
         <div class="boxflex1 paystyle checkImg1" data-type="10">
             <img src="/images/jd.png" style="width: 20px;">
             <span>京东扫码</span>
-            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
+            <img src="/images/seleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
         </div>
         <div class="boxflex1 paystyle checkImg1"  data-type="11">
             <img src="/images/pay.png" style="width: 20px;">
@@ -283,7 +286,7 @@ $(function() {
 
 
 
-    $('#type').val(3);
+    $('#type').val(10);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
         $(this).addClass("on");
@@ -328,7 +331,11 @@ $(function() {
         $('#amount').val(amount);
         var type = $('#type').val();
         if( parseFloat(amount) > 1000 && ( type == 10 || type == 11 ) ){
-            $(".qqsaoma").trigger("click");
+            //$(".qqsaoma").trigger("click");
+			$.alert("京东扫码和银联扫码单笔数额不得大于1000元" , function(){
+                //$(".qqsaoma").trigger("click");
+				$(".btn_money").eq(0).trigger("click");
+            });
         }
 
         $(".real_count").html(val - Math.ceil( val * rate ));
@@ -340,6 +347,16 @@ $(function() {
             alert('金额输入不合法!');
             return false;
         }
+		var type = $('#type').val();
+        if( parseFloat(amount) > 1000 && ( type == 10 || type == 11 ) ){
+            //$(".qqsaoma").trigger("click");
+			$.alert("京东扫码和银联扫码单笔数额不得大于1000元" , function(){
+                //$(".qqsaoma").trigger("click");
+				$(".btn_money").eq(0).trigger("click");
+				return false;
+            });
+			return false;
+        }
         $("#payform").submit();
     });
 
@@ -348,7 +365,8 @@ $(function() {
         var amount =  $('#amount').val();
         if( parseFloat(amount) > 1000 && ( type == 10 || type == 11 )){
             $.alert("京东扫码和银联扫码单笔数额不得大于1000元" , function(){
-                $(".qqsaoma").trigger("click");
+                //$(".qqsaoma").trigger("click");
+				$(".btn_money").eq(0).trigger("click");
             });
         }
         $('.payType .paystyle').each(function(){
