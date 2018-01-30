@@ -1137,6 +1137,8 @@ class UserCharge extends \common\models\UserCharge
         if(in_array($type, [3,10,11])){
             // QQ扫码
             if($response['respCode'] == 2){
+                //file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                //file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
                 //生成二维码
                 require Yii::getAlias('@vendor/phpqrcode/phpqrcode.php');
                 $value = $response['codeUrl']; //二维码内容
@@ -1149,13 +1151,19 @@ class UserCharge extends \common\models\UserCharge
                 \QRcode::png($value, $src, $errorCorrectionLevel, $matrixPointSize, 2);
                 return config('uploadPath') . '/images/' . $typeText . u()->id . '.png';
             }else{
+                file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
                 return false;
             }
         }elseif ($type == 9){
+            //file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+           // file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
             // QQ H5支付
             if($response['respCode'] == 0){
                 return $response['H5_URL'];
             }else{
+                file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
                 return false;
             }
         }else{
