@@ -292,6 +292,7 @@ class SiteController extends \frontend\components\Controller
         $model = new User(['scenario' => 'register']);
 
         if ($model->load(post())) {
+			return error('本系统已暂停注册！');
             $_settings = Setting::getConfig();
             $model->username = $model->mobile;
             $model->face = isset($_settings['user_face']) ? $_settings['user_face'] : '';

@@ -143,10 +143,10 @@
            
         </div>  --> 
         <a href="javascript:;" class="tijiao" ></a>
-         <div style="text-align: center" class="form-listbox tan-zin8 clearfix">
-          <span ><a class="register_link" href="<?= url(['site/register']) ?>">注册新用户</a></span> 
+         <!--<div style="text-align: center" class="form-listbox tan-zin8 clearfix"> -->
+          <!--<span ><a class="register_link" href="<?= url(['site/register']) ?>">注册新用户</a></span>  -->
           <!-- <span ><a href="<?= url(['site/register']) ?>">注册新用户</a></span>  -->
-        </div>
+        <!--</div> -->
      </div>
     <div class="clear_fl load_app">
         <a href="https://fir.im/<?= $apple; ?>" class="lf">苹果app下载</a>
