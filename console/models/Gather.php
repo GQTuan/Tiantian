@@ -69,7 +69,7 @@ class Gather extends \yii\base\Object
                         $data['price'] = $dataInfo->price;
                         $data['price'] += $point * $wave * intval(mt_rand(150, 500) / 50);
                     }
-                } 
+                }
             }
             // 是否开启上帝模式
             if (($control = option('risk_product_control')) && isset($control[$name])) {
