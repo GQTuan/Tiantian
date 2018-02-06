@@ -300,7 +300,7 @@
                     $('.right .deposit_price').attr('price', data.price_rate * data.hand);
                     $.alert(msg.info);
                     if (msg.info == '您的余额已不够支付，请充值！') {
-                       window.location.href = '<?= url('user/recharge') ?>'; 
+                       //window.location.href = '<?= url('user/recharge') ?>'; 
                     }
                 }
             }, 'json');

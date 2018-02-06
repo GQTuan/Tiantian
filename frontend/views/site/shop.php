@@ -250,7 +250,8 @@
                 <div class="manifact carder">
                     <div class="item">
                         <div class="value">
-                            <a href="/user/recharge">
+                            <!--<a href="/user/recharge">-->
+                            <a href="javascript:void(0);">
                                 <img class="flag" src="/images/home_recharge.png">
                             </a>
                         </div>

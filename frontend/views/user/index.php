@@ -10,7 +10,7 @@
                         <div class="p_zichan">资产：<span id="total-asset"><?= sprintf('%.2f', $user->account) ?></span>元</div>
                     </div>
                     <div class="btncenter-withdraw-wrap">
-                        <div class="recharge"><a class="overallPsd" data-url="<?= url(['user/recharge']) ?>">充值</a></div>
+                        <!--<div class="recharge"><a class="overallPsd" data-url="<?/*= url(['user/recharge']) */?>">充值</a></div>-->
                         <div class="withdraw"><a class="overallPsd" data-url="<?= url(['user/withDraw']) ?>">提现</a></div>
                     </div>
                 </div>
