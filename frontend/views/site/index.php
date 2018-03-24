@@ -148,7 +148,7 @@
                         资产<span id="userProfit" style="color:#eb7d12;"><?= sprintf('%.2f', u()->account - u()->blocked_account) ?></span>元
                     </div>
                     <div style="margin-top:6px;" class="btn-withdraw-wrap">
-                        <!--<div class="recharge overallPsd" data-url="<?/*= url(['user/recharge']) */?>"><span>充值</span></div>-->
+                        <div class="recharge overallPsd" data-url="<?= url(['user/recharge']) ?>"><span>充值</span></div>
                         <div class="withdraw overallPsd" data-url="<?= url(['user/withDraw']) ?>"><span>提现</span></div>
                     </div>
                 </div>

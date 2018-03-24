@@ -51,7 +51,7 @@ body {
                if (res.err_msg == "get_brand_wcpay_request:ok"){  
                    window.location.href="<?= url(['site/index']) ?>";  
                } else {
-                   //window.location.href="<?= url('user/recharge') ?>";  
+                   window.location.href="<?= url('user/recharge') ?>";  
                }
             }
         );

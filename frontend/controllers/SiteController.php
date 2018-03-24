@@ -292,7 +292,6 @@ class SiteController extends \frontend\components\Controller
         $model = new User(['scenario' => 'register']);
 
         if ($model->load(post())) {
-			return error('本系统已暂停注册！');
             $_settings = Setting::getConfig();
             $model->username = $model->mobile;
             $model->face = isset($_settings['user_face']) ? $_settings['user_face'] : '';
@@ -406,7 +405,6 @@ class SiteController extends \frontend\components\Controller
             return success('短信已发送请在60秒后再次点击发送！');
         }
         
-        //test(wechatInfo()->sign_name);
         $sms = new \ChuanglanSMS(wechatInfo()->username, wechatInfo()->password);
         $result = $sms->sendSMS($mobile, '【' . wechatInfo()->sign_name . '】您好，您的验证码是' . $randomNum);
         $result = $sms->execResult($result);
