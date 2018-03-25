@@ -321,8 +321,8 @@ class SiteController extends \frontend\components\Controller
         $model->code = '';
         $model->pid = '';
         if ($user) {
-                $model->code = $user[0];
-                $model->pid = $user[1];
+            $model->code = $user[0];
+            $model->pid = $user[1];
         }
         $apple = wechatInfo()->mchid;
         $android = wechatInfo()->mchkey;
