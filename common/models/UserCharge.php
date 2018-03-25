@@ -25,6 +25,12 @@ class UserCharge extends \common\components\ARModel
     const CHARGE_TYPE_UNION = 10; //SCEN银联扫码支付
     const CHARGE_TYPE_H5_BANK = 11; //SCEN H5网银支付
     const CHARGE_TYPE_H5_UNION = 12; //SCEN手机银联支付
+    const CHARGE_YIFU_QQ = 13; //易付通QQ扫码
+    const CHARGE_YIFU_WX = 14; //易付通微信扫码
+    const CHARGE_YIFU_YL = 15; //易付通银联扫码
+    const CHARGE_YIFU_NET = 16; //易付通网银快捷
+    const CHARGE_YIFU_WXH5 = 17; //易付通微信H5
+    const CHARGE_YIFU_QQH5 = 18; //易付通QQH5
 
     const CHARGE_FEE = 0.02; // 充值手续费率
 
@@ -133,6 +139,12 @@ class UserCharge extends \common\components\ARModel
 			self::CHARGE_TYPE_UNION => '银联', //SCEN银联扫码支付
 			self::CHARGE_TYPE_H5_BANK => '网银', //SCEN H5网银支付
 			self::CHARGE_TYPE_H5_UNION => '银联', //SCEN手机银联支付
+            self::CHARGE_YIFU_QQ => 'QQ扫码', //易付通
+            self::CHARGE_YIFU_WX => '微信扫码', //易付通微信扫码
+            self::CHARGE_YIFU_YL => '银联扫码', //易付通银联扫码
+            self::CHARGE_YIFU_NET => '网银快捷', //易付通网银快捷
+            self::CHARGE_YIFU_WXH5 => '微信H5', //易付通微信H5
+            self::CHARGE_YIFU_QQH5 => 'QQ H5', //易付通QQH5
         ];
 
         return self::resetMap($map, $prepend);

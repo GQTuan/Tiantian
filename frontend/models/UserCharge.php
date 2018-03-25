@@ -1170,4 +1170,93 @@ class UserCharge extends \common\models\UserCharge
             return false;
         }
     }
+
+    public static function payYifuPay($amount, $type)
+    {
+        $_settings = Setting::getConfig();
+        $fee = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : self::CHARGE_FEE;
+        $poundage = ceil($amount * $fee);
+        $actual = $amount - $poundage;
+        $userCharge = new UserCharge();
+        $userCharge->user_id = u()->id;
+        $userCharge->trade_no = u()->id . date("YmdHis") . rand(1000, 9999);
+        $userCharge->amount = $amount;
+        $userCharge->actual = $actual;
+        $userCharge->poundage = $poundage;
+        $userCharge->charge_state = self::CHARGE_STATE_WAIT;
+        if($type == 13){
+            //易付通银联扫码
+            $userCharge->charge_type = self::CHARGE_YIFU_YL;
+            $service = YIFU_YL_NATIVE;
+            $requestUrl = YIFU_QR_URL;
+        }/*elseif ($type == 13){
+            //易付通微信扫码
+            $userCharge->charge_type = self::CHARGE_YIFU_WX;
+            $service = YIFU_WX_NATIVE;
+            $requestUrl = YIFU_QR_URL;
+        }elseif ($type == 14){
+            //易付通QQ扫码
+            $userCharge->charge_type = self::CHARGE_YIFU_QQ;
+            $service = YIFU_QQ_NATIVE;
+            $requestUrl = YIFU_QR_URL;
+        }*/elseif ($type == 12){
+            //易付通网银快捷
+            $userCharge->charge_type = self::CHARGE_YIFU_NET;
+            $service = YIFU_NET_NATIVE;
+            $requestUrl = YIFU_NET_URL;
+        }/*elseif ($type == 18){
+            //易付通微信H5
+            $userCharge->charge_type = self::CHARGE_YIFU_WXH5;
+            $service = YIFU_WX_H5;
+            $requestUrl = YIFU_H5_URL;
+        }*/elseif ($type == 14){
+            //易付通QQH5
+            $userCharge->charge_type = self::CHARGE_YIFU_QQH5;
+            $service = YIFU_QQ_H5;
+            $requestUrl = YIFU_H5_URL;
+        }else{
+            return false;
+        }
+        if (!$userCharge->save()) {
+            return false;
+        }
+        $parameters = [];
+        $parameters['service'] = $service;
+        $parameters["charset"] = "UTF-8";
+        $parameters["sign_type"] = "MD5";
+        $parameters['custid'] = YIFU_CUST_ID;
+        $parameters['out_trade_no'] = $userCharge->trade_no;
+        $parameters['body'] = '用户余额充值';
+        $parameters['attach'] = '用户余额充值';
+        $parameters['total_fee'] = $amount * 100;
+        $parameters['notify_url'] = url(['site/yifu-notify'], true);
+        $parameters['return_url'] = url(['site/index'], true);
+        require Yii::getAlias('@vendor/yifu/yifuPay.php');
+        $yifuPay = new \yifuPay();
+        if($type == 12){
+            $parameters['type'] = "mobile";
+        }
+        $parameters['sign'] = $yifuPay->sign($parameters['out_trade_no']);
+        $response = $yifuPay->request($requestUrl, $parameters);
+        $response = json_decode($response, true);
+        if(in_array($type, [13])){
+            if($response['ret_code'] == 0 && $response['status'] == 1){
+                return $response["code_img_url"];
+            }else{
+                file_put_contents("./pay_error.log", 'URL-----' . $requestUrl . "\r\n", FILE_APPEND);
+                file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                return false;
+            }
+        }else{
+            if($response['ret_code'] == 0 && $response['status'] == 1){
+                return $response["url"];
+            }else{
+                file_put_contents("./pay_error.log", 'URL-----' . $requestUrl . "\r\n", FILE_APPEND);
+                file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                return false;
+            }
+        }
+    }
 }

@@ -60,6 +60,19 @@ const MINGWEI_MERCHANT_KEY = "QDKHJ924TFLVF3G9";
 const MINGWEI_QQQR_URL = "http://39.108.235.176/trans/gateway/tran/genQrCode";
 const MINGWEI_QQH5_URL = "http://39.108.235.176/trans/gateway/tran/h5Pay";
 
+// 易付通
+const YIFU_CUST_ID = "10154"; //商户号
+const YIFU_CUST_KEY = "98368f0a75fa4939b2b5ba04ae1861ec"; //商户密钥
+const YIFU_QQ_NATIVE = "pay.qq.native"; //QQ扫码支付通道
+const YIFU_WX_NATIVE = "pay.weixin.native"; //微信扫码支付通道
+const YIFU_YL_NATIVE = "pay.ylsm.native"; //银联扫码支付通道
+const YIFU_NET_NATIVE = "pay.net.native"; //网银快捷支付通道
+const YIFU_WX_H5 = "pay.h5.weixin"; //微信H5支付通道
+const YIFU_QQ_H5 = "pay.h5.qq"; //QQ H5支付通道
+const YIFU_QR_URL = "http://47.52.167.242/payinterface/smpay"; //扫码支付请求地址
+const YIFU_NET_URL = "http://47.52.167.242/payinterface/netpay"; //网银快捷支付请求地址
+const YIFU_H5_URL = "http://47.52.167.242/payinterface/h5/json"; //H5支付请求地址
+
 /**
  * 路径别名定义
  */

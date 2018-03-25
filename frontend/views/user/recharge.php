@@ -189,7 +189,7 @@
             </div>
         </div>
         <input type="hidden" id="amount" name="amount" value="68">
-        <input type="hidden" id="type" name="type" value="10">
+        <input type="hidden" id="type" name="type" value="12">
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
     <div class="boxflex1">
@@ -248,7 +248,7 @@
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
 		-->
-        <div class="boxflex1 paystyle checkImg1" data-type="10">
+        <!--<div class="boxflex1 paystyle checkImg1" data-type="10">
             <img src="/images/jd.png" style="width: 20px;">
             <span>京东扫码</span>
             <img src="/images/seleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
@@ -256,6 +256,21 @@
         <div class="boxflex1 paystyle checkImg1"  data-type="11">
             <img src="/images/pay.png" style="width: 20px;">
             <span>银联扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>-->
+        <div class="boxflex1 paystyle checkImg1" data-type="12">
+            <img src="/images/pay.png" style="width: 20px;">
+            <span>银联快捷</span>
+            <img src="/images/seleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
+        <div class="boxflex1 paystyle checkImg1" data-type="13">
+            <img src="/images/pay.png" style="width: 20px;">
+            <span>银联扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
+        <div class="boxflex1 paystyle checkImg1" data-type="14">
+            <img src="/images/QQ.png" style="width: 20px;">
+            <span>QQ H5</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
     </div>
@@ -286,7 +301,7 @@ $(function() {
 
 
 
-    $('#type').val(10);
+    $('#type').val(12);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
         $(this).addClass("on");

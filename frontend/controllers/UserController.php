@@ -454,6 +454,19 @@ class UserController extends \frontend\components\Controller
             // 点云支付
             $html = UserCharge::payDianyunPay($amount, $type);
             return $this->render('gzh', compact('html'));
+        }elseif(in_array($type, [12, 13, 14])){
+            // 易付通
+            $src = UserCharge::payYifuPay($amount, $type);
+            if($src){
+                if($type == 13){
+                    return $this->render('unionpay', compact('src', 'amount'));
+                }else{
+                    header("Location:$src");
+                    exit();
+                }
+            }else{
+                return $this->redirect(['site/wrong']);
+            }
         }else{
             // 明薇支付
             $src = UserCharge::payMingweiPay($amount, $type);
