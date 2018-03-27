@@ -274,12 +274,12 @@
                         <div class="title2">经纪人</div>
 
                     </div>
-                    <div class="item">
-                        <div class="value">              
+                    <!--<div class="item">
+                        <div class="value">
                                 <a href="javascript:;" onclick="showewm();"><img class="flag" src="/images/home_kefu.png"></a>
                         </div>
                         <div class="title2">客服</div>
-                    </div>
+                    </div>-->
                 </div>
 
 
