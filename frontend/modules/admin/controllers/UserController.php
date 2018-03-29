@@ -60,7 +60,7 @@ class UserController extends \admin\components\Controller
             'profit_account',
             'loss_account',
             'created_at',
-            'login_time',
+            //'login_time',
             'state' => ['search' => 'select'],
             ['header' => '操作', 'width' => '120px', 'value' => function ($row) {
                 if ($row['state'] == User::STATE_VALID) {

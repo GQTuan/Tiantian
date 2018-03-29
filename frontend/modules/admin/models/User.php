@@ -37,7 +37,11 @@ class User extends \common\models\User
     public function getParentLink($name = 'id')
     {
         if ($this->pid) {
-            return Html::a($this->parent->nickname, ['', 'search[' . $name . ']' => $this->pid], ['class' => 'parentLink']);
+            if(is_object($this->parent) && $this->parent){
+                return Html::a($this->parent->nickname, ['', 'search[' . $name . ']' => $this->pid], ['class' => 'parentLink']);
+            }else{
+                return '无';
+            }
         } else {
             return '无';
         }
