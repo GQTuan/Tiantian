@@ -231,11 +231,11 @@
                 <div class="table">
                     <div class="table-cell btnrise-wrap buyProduct" data-type="1">
                         <!-- <label><span><img src="/images/icon-up.png" alt="" style="margin-top: -8px;"></span></label> -->
-                        <label><span>买涨</span></label>
+                        <label><span>订购</span></label>
                     </div>
                     <div class="table-cell btndown-wrap buyProduct" data-type="2">
                         <!-- <label><span><img src="/images/icon-down.png" alt="" style="margin-top: -8px;"></span></label> -->
-                        <label><span>买跌</span></label>
+                        <label><span>回购</span></label>
                     </div>
                 </div>
                 <p><?= config('web_trade_time', '商品时间：周一~周五早上6:00~凌晨4:00 周末休市') ?></p>
