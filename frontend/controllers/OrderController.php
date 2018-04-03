@@ -123,9 +123,9 @@ class OrderController extends \frontend\components\Controller
             return $this->redirect(['site/login']);
         }
         $data = post('data');
-	if($data['product_id'] == 9) {
-	    return error('暂时无法下单');
-	}
+        /*if($data['product_id'] == 9) {
+            return error('暂时无法下单');
+        }*/
         //判断此期货是否在商品时间内
         if (!Product::isTradeTime($data['product_id'])) {
             return error('非买入时间，无法委托买入！');
@@ -149,10 +149,10 @@ class OrderController extends \frontend\components\Controller
         }
         $product = Product::findModel($data['product_id']);
         //特殊产品周末正常
-        if ((date('w') == 0 && $product->source == Product::SOURCE_TRUE) || (date('G') > 5 && date('w') == 6 && $product->source == Product::SOURCE_TRUE)) {
+        if ((date('w') == 0 && $product->source == Product::SOURCE_TRUE) || (date('w') == 6 && $product->source == Product::SOURCE_TRUE)) {
             return error('周末休市，无法委托买入！');
         }
-        $orders = Order::find()->where(['order_state' => Order::ORDER_POSITION, 'user_id' => u()->id, 'product_id' => $data['product_id']])->andWhere(['>', 'created_at', date('Y-m-d 00:00:00', time())])->with('product')->orderBy('created_at DESC')->all();
+        //$orders = Order::find()->where(['order_state' => Order::ORDER_POSITION, 'user_id' => u()->id, 'product_id' => $data['product_id']])->andWhere(['>', 'created_at', date('Y-m-d 00:00:00', time())])->with('product')->orderBy('created_at DESC')->all();
 
         //订单处理
         $res = Order::saveOrder($data);

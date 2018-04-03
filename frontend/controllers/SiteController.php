@@ -297,17 +297,19 @@ class SiteController extends \frontend\components\Controller
             $model->face = isset($_settings['user_face']) ? $_settings['user_face'] : '';
             $model->open_id = date("Yhdhis") . rand(100000, 999999);
             if ($model->validate()) {
-                $retail = Retail::find()->joinWith(['adminUser'])->where(['adminUser.power' => AdminUser::POWER_RING, 'retail.code' => $model->code, 'adminUser.pid' => wechatInfo()->admin_id])->one();
+                //$retail = Retail::find()->joinWith(['adminUser'])->where(['adminUser.power' => AdminUser::POWER_RING, 'retail.code' => $model->code, 'adminUser.pid' => wechatInfo()->admin_id])->one();
+                $retail = Retail::find()->joinWith(['adminUser'])->where(['retail.code' => $model->code])->one();
                 if (!empty($retail)) {                                                                              
                     $model->admin_id = $retail->adminUser->id;
                 } else {
                     return error('请填写正确的邀请码！');
                 }
-                $arr = AdminUser::find()->where(['pid' => wechatInfo()->admin_id])->map('id', 'id');
-                $adminIds = array_merge($arr, [wechatInfo()->admin_id]);
-                $user_phone = User::find()->joinWith(['admin'])->where(['admin.power' => AdminUser::POWER_RING,'user.username' => $model->username])->andWhere(['in', 'user.admin_id', $adminIds])->one();
+                //$arr = AdminUser::find()->where(['pid' => wechatInfo()->admin_id])->map('id', 'id');
+                //$adminIds = array_merge($arr, [wechatInfo()->admin_id]);
+                //$user_phone = User::find()->joinWith(['admin'])->where(['admin.power' => AdminUser::POWER_RING,'user.username' => $model->username])->andWhere(['in', 'user.admin_id', $adminIds])->one();
+                $user_phone = User::find()->where(['username' => $model->mobile])->one();
                 if(!empty($user_phone)) {
-                    return error('注册成功');
+                    return error('手机号已注册！');
                 }
                 $model->hashPassword()->insert(false);
                 $model->login(false);
