@@ -258,7 +258,7 @@
             <span>银联扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>-->
-        <div class="boxflex1 paystyle checkImg1" data-type="12">
+        <!--<div class="boxflex1 paystyle checkImg1" data-type="12">
             <img src="/images/pay.png" style="width: 20px;">
             <span>银联快捷</span>
             <img src="/images/seleted.png" alt="" style="float:right;" class="check-payone checkPay" >
@@ -272,7 +272,7 @@
             <img src="/images/QQ.png" style="width: 20px;">
             <span>QQ H5</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
-        </div>
+        </div>-->
     </div>
     <div class="recharge-btn" id="payBtn">立即充值</div>
 
@@ -357,6 +357,7 @@ $(function() {
     });
 
     $('#payBtn').on('click', function(){
+        return false;
         var amount = $('#amount').val();
         if(!amount || isNaN(amount) || amount <= 0){
             alert('金额输入不合法!');
